@@ -1,6 +1,3 @@
-import pandas as pd
-
-
 def cleanse_match_results(
     match_results_df,
     cols_to_keep=['matchid', 'dates', 'gender', 'outcome.winner', 'teams'],

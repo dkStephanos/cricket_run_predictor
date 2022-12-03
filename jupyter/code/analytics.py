@@ -8,6 +8,7 @@ def assemble_yearly_summaries_per_team(
     # Extracts the win records per year/per team from the match_results
     # accepts start/end year as optional parameters
     # **********************************************************************
+
     # Initialize result df
     yearly_summary_df = pd.DataFrame(
         columns=['Year', 'Team', 'TotalGames', 'TotalWins', 'Win%']

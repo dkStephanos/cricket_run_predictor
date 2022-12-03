@@ -3,7 +3,7 @@ def cleanse_match_results(
     cols_to_keep=['matchid', 'dates', 'gender', 'outcome.winner', 'teams'],
 ):
     # ************************************************************************************
-    # Accepts match results, drops uneeded columns and filters matches to only those
+    # Accepts match results, drops uneeded columns, and filters matches to only those
     # with natrual winner (exludings DLS decisions, ties, etc.)
     # ************************************************************************************
 
@@ -30,18 +30,27 @@ def split_by_gender(df):
     ].drop(['gender'], axis=1)
 
 
-def cleanse_innings_results(innings_results_df, match_results_df):
+def cleanse_innings_results(
+    innings_results_df,
+    match_results_df,
+    cols_to_keep=['matchid', 'dates', 'gender', 'outcome.winner', 'teams'],
+):
     # ************************************************************************************
     # Accepts innings results and match_results_df and filters/returns innings results
-    # for only those matches that end in a result
+    # for only those matches that end in a result, also drops uneeded columns
     # ************************************************************************************
 
     matchids = _collect_matchids(match_results_df)
-    innings_results_df = innings_results_df.loc[innings_results_df['matchid'].isin(matchids)]
+    innings_results_df = innings_results_df.loc[
+        innings_results_df['matchid'].isin(matchids)
+    ]
+
+    # Drops superfluous columns
+    innings_results_df = innings_results_df.drop(
+        list(set(innings_results_df.columns).difference(set(cols_to_keep))), axis=1
+    )
 
     return innings_results_df
-
-
 
 
 def _collect_matchids(match_results_df):
@@ -52,5 +61,3 @@ def _collect_matchids(match_results_df):
     return match_results_df.loc[
         (match_results_df["result"].isna()) | (match_results_df["result"] == "tied")
     ]['matchid'].unique()
-
-

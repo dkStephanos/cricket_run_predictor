@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 data/raw/innings_results.json
 data/raw/match_results.json
+data/clean/innings_results.csv

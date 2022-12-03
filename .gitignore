@@ -127,5 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-data/innings_results.json
-data/match_results.json
+data/raw/innings_results.json
+data/raw/match_results.json

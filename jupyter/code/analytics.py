@@ -60,8 +60,9 @@ def assemble_over_statistics(innings_results_df):
         ]
     )
     for index, row in innings_results_df.iterrows():
-        if index == 0 or row['innings'] > last_innings:
+        if index == 0 or row['innings'] > last_innings or last_matchid != row['matchid']:
             # Initialize
+            last_matchid = row['matchid']
             last_innings = row['innings']
             last_over = int(str(row['over']).split('.')[0])
             runs_per_over = row['runs.total']

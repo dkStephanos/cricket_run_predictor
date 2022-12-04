@@ -117,4 +117,4 @@ def assemble_over_statistics(innings_results_df):
         ]
     )
 
-    return overs_summary_df
+    return overs_summary_df.reset_index()

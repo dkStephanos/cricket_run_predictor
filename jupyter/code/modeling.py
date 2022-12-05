@@ -28,14 +28,6 @@ def predict_runs_per_over(
     pickle.dump(regr, open('./data/models/linear-regression-runsPerOver.sav', 'wb'))
 
 
-def apply_model(X_test, y_test):
-    loaded_model = pickle.load(
-        open('./data/models/linear-regression-runsPerOver.sav', 'rb')
-    )
-    result = loaded_model.score(X_test, y_test)
-    print(result)
-
-
 def _prepare_train_test_data(df, feature_cols, test_size):
     # Select the target_col
     y = df["RunsPerOver"]

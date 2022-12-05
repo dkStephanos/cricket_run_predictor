@@ -1,9 +1,12 @@
 import pandas as pd
 import pickle
 from sklearn.preprocessing import StandardScaler
+import sys
 
-df = pd.read_csv('../data/results/over_summary.csv', index_col=0)
-df = df.loc[df['matchid'] == 1029001].head(5)
+_, data_path, matchid, num_overs = sys.argv
+
+df = pd.read_csv(data_path, index_col=0)
+df = df.loc[df['matchid'] == int(matchid)].head(int(num_overs))
 
 X = StandardScaler().fit_transform(
     df[["Innings", "RemainingOvers", "RemainingWickets"]]

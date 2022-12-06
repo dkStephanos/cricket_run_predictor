@@ -25,7 +25,7 @@ def predict_runs_per_over(
     # The coefficient of determination: 1 is perfect prediction
     print("Coefficient of determination: %.3f" % r2_score(y_test, y_pred))
 
-    pickle.dump(regr, open('./data/models/linear-regression-runsPerOver.sav', 'wb'))
+    pickle.dump(regr, open('../data/models/linear-regression-runsPerOver.sav', 'wb'))
 
 
 def _prepare_train_test_data(df, feature_cols, test_size):

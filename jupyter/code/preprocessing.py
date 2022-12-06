@@ -13,9 +13,7 @@ def cleanse_match_results(
     match_results_df = match_results_df.loc[match_results_df["result"].isna()]
 
     # Drops superfluous columns
-    match_results_df = match_results_df.drop(
-        list(set(match_results_df.columns).difference(set(cols_to_keep))), axis=1
-    )
+    match_results_df = match_results_df[cols_to_keep]
 
     return match_results_df
 
@@ -33,7 +31,7 @@ def split_by_gender(df):
 def cleanse_innings_results(
     innings_results_df,
     match_results_df,
-    cols_to_keep=['matchid', 'dates', 'gender', 'outcome.winner', 'teams'],
+    cols_to_keep=['matchid', 'team', 'innings', 'over', 'runs.total', 'wicket.kind'],
 ):
     # ************************************************************************************
     # Accepts innings results and match_results_df and filters/returns innings results
@@ -46,9 +44,7 @@ def cleanse_innings_results(
     ]
 
     # Drops superfluous columns
-    innings_results_df = innings_results_df.drop(
-        list(set(innings_results_df.columns).difference(set(cols_to_keep))), axis=1
-    )
+    innings_results_df = innings_results_df[cols_to_keep]
 
     return innings_results_df
 
